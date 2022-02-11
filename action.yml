@@ -3,15 +3,15 @@ description: 'Lints and validates helm charts and templates'
 author: NuclearRedeye
 inputs:
   chartPath:
-    description: 'Path to chart files relative to repository root, e.g \'helm/project\''
+    description: 'Path to chart files relative to repository root, e.g helm/project'
     required: false
     default: ''
   helmVersion:
-    description: 'The version of Helm to use, e.g \'3.1.1\''
+    description: 'The version of Helm to use, e.g 3.1.1'
     required: false
     default: 'latest'
   kubernetesVersion:
-    description: 'The version of Kuberentes to validate the templates against, e.g. \'1.19.0\''
+    description: 'The version of Kuberentes to validate the templates against, e.g. 1.19.0'
     required: false
     default: 'master'
 runs:
