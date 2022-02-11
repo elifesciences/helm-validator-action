@@ -13,7 +13,7 @@ inputs:
   kubernetesVersion:
     description: 'The version of Kuberentes to validate the templates against, e.g. 1.19.0'
     required: false
-    default: 'master'
+    default: '1.19.0'
 runs:
   using: "composite"
   steps:
