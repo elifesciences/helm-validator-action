@@ -20,11 +20,12 @@ runs:
     - name: Lint chart
       shell: bash
       run: |
-        docker run --rm -i -v $GITHUB_WORKSPACE/${{ inputs.chartPath }}:/formula:ro -v $GITHUB_WORKSPACE/out:/out:rw alpine/helm:${{ inputs.helmVersion }} lint /formula
+        docker run --rm -i -v $GITHUB_WORKSPACE/${{ inputs.chartPath }}:/formula:ro alpine/helm:${{ inputs.helmVersion }} lint /formula
     - name: Generate templates
       shell: bash
       run: |
-        docker run --rm -i -v $GITHUB_WORKSPACE/${{ inputs.chartPath }}:/formula:ro -v $GITHUB_WORKSPACE/out:/out:rw alpine/helm template -g /formula --output-dir /out
+        docker run --rm -i -v $GITHUB_WORKSPACE/${{ inputs.chartPath }}:/formula:ro -v $GITHUB_WORKSPACE/out:/out:rw alpine/helm:${{ inputs.helmVersion }} template -g /formula --output-dir /out
     - name: Validating template
+      shell: bash
       run: |
         docker run --rm -i -v $GITHUB_WORKSPACE/out/${{ inputs.chartPath }}:/templates:ro ghcr.io/yannh/kubeconform -kubernetes-version ${{ inputs.kubernetesVersion }} -summary -strict -output json /templates/
