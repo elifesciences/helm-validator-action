@@ -28,4 +28,4 @@ runs:
     - name: Validating template
       shell: bash
       run: |
-        docker run --rm -i -v $GITHUB_WORKSPACE/out/${{ inputs.chartPath }}:/templates:ro ghcr.io/yannh/kubeconform -kubernetes-version ${{ inputs.kubernetesVersion }} -summary -strict -output json /templates/
+        docker run --rm -i -v $GITHUB_WORKSPACE/out:/templates:ro ghcr.io/yannh/kubeconform -kubernetes-version ${{ inputs.kubernetesVersion }} -summary -strict -output json /templates
