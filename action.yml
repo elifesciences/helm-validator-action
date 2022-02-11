@@ -1,4 +1,4 @@
-name: 'Helm Chart Validator'
+name: 'Helm Validator'
 description: 'Lints and validates helm charts and templates'
 author: NuclearRedeye
 inputs:
