@@ -4,4 +4,4 @@ GitHub action for linting and validating charts
 
 # License
 
-Licensed under [MIT](https://choosealicense.com/licenses/mit/
+Licensed under [MIT](https://choosealicense.com/licenses/mit/)
