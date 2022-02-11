@@ -1,6 +1,6 @@
 # Helm Validator
 
-GitHub action for linting and validating charts
+GitHub action for linting and validating charts using [Helm](https://helm.sh/) and [kubeconform](https://github.com/yannh/kubeconform).
 
 # Usage
 
