@@ -1,0 +1,30 @@
+name: 'Helm Validator'
+description: 'Lints and validates helm charts'
+author: NuclearRedeye
+inputs:
+  chartPath:
+    description: 'Path to chart files relative to repository root, e.g \'helm/project\''
+    required: false
+    default: ''
+  helmVersion:
+    description: 'Version of Helm to use, e.g \'3.1.1\''
+    required: false
+    default: 'latest'
+  kubernetesVersion:
+    description: 'Kubernetes API version to validate against, e.g. \'1.19.0\''
+    required: false
+    default: 'master'
+runs:
+  using: "composite"
+  steps:
+    - name: Lint chart
+      shell: bash
+      run: |
+        docker run --rm -i -v $GITHUB_WORKSPACE/${{ inputs.chartPath }}:/formula:ro -v $GITHUB_WORKSPACE/out:/out:rw alpine/helm:${{ inputs.helmVersion }} lint /formula
+    - name: Generate templates
+      shell: bash
+      run: |
+        docker run --rm -i -v $GITHUB_WORKSPACE/${{ inputs.chartPath }}:/formula:ro -v $GITHUB_WORKSPACE/out:/out:rw alpine/helm template -g /formula --output-dir /out
+    - name: Validating template
+      run: |
+        docker run --rm -i -v $GITHUB_WORKSPACE/out/${{ inputs.chartPath }}:/templates:ro ghcr.io/yannh/kubeconform -kubernetes-version ${{ inputs.kubernetesVersion }} -summary -strict -output json /templates/
