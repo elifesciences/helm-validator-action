@@ -1,5 +1,5 @@
-name: 'Helm Validator'
-description: 'Lints and validates helm charts'
+name: 'Helm Chart Validator'
+description: 'Lints and validates helm charts and templates'
 author: NuclearRedeye
 inputs:
   chartPath:
@@ -7,11 +7,11 @@ inputs:
     required: false
     default: ''
   helmVersion:
-    description: 'Version of Helm to use, e.g \'3.1.1\''
+    description: 'The version of Helm to use, e.g \'3.1.1\''
     required: false
     default: 'latest'
   kubernetesVersion:
-    description: 'Kubernetes API version to validate against, e.g. \'1.19.0\''
+    description: 'The version of Kuberentes to validate the templates against, e.g. \'1.19.0\''
     required: false
     default: 'master'
 runs:
